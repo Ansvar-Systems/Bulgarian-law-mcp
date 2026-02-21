@@ -11,9 +11,9 @@ sources:
     license_or_terms:
       type: "government_terms"
       url: "https://www.parliament.bg/bg/laws"
-      summary: "Legislative acts are publicly published by the National Assembly and exposed through parliament.bg endpoints."
+      summary: "Promulgated legislative acts are publicly published by the National Assembly and exposed through parliament.bg API endpoints."
     coverage:
-      scope: "Promulgated laws available through /api/v1/act/{id} with archive index endpoints for law discovery."
-      limitations: "Archive API covers 2006-present and emphasizes promulgated acts/amendments rather than a fully consolidated historical corpus."
+      scope: "Archive-indexed promulgated laws available via /api/v1/archive-list, /api/v1/archive-period, and full act payloads via /api/v1/act/{id}."
+      limitations: "Coverage follows what is exposed by the parliament.bg archive API (2006+ buckets currently available)."
     languages:
       - "bg"

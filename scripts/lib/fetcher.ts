@@ -1,8 +1,10 @@
 /**
- * Rate-limited HTTP fetcher for Bulgarian legislation.
+ * Rate-limited HTTP fetchers for Bulgarian legislation from parliament.bg.
  *
- * Source: Parliament of the Republic of Bulgaria API (parliament.bg).
- * Endpoint pattern: /api/v1/act/{id}
+ * Official endpoints used:
+ * - /api/v1/archive-list/bg/L_Acts_fn/1/0
+ * - /api/v1/archive-period/bg/L_Acts_fn/{year}/{month}/1/0
+ * - /api/v1/act/{id}
  */
 
 export interface ParliamentActResponse {
@@ -14,6 +16,22 @@ export interface ParliamentActResponse {
   L_Act_dv_year?: number;
   L_ActL_final: string;
   L_ActL_final_body: string;
+}
+
+export interface ArchiveMonth {
+  t_month: number;
+  C_18n_value?: string;
+}
+
+export interface ArchiveYear {
+  t_year: number;
+  t_month_list: ArchiveMonth[];
+}
+
+export interface ArchiveLawEntry {
+  t_id: number;
+  t_date: string;
+  t_label: string;
 }
 
 const USER_AGENT = 'Ansvar-Law-MCP/1.0 (real-ingestion; hello@ansvar.eu)';
@@ -35,11 +53,11 @@ async function applyRateLimit(): Promise<void> {
 }
 
 async function fetchJson<T>(url: string, maxRetries = 2): Promise<T> {
-  await applyRateLimit();
-
   let lastError: unknown;
 
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    await applyRateLimit();
+
     try {
       const response = await fetch(url, {
         headers: {
@@ -70,7 +88,22 @@ async function fetchJson<T>(url: string, maxRetries = 2): Promise<T> {
 }
 
 /**
- * Fetch a promulgated law by parliament act ID.
+ * Fetch archive year/month index for promulgated laws.
+ */
+export async function fetchArchiveYears(): Promise<ArchiveYear[]> {
+  return fetchJson<ArchiveYear[]>('https://www.parliament.bg/api/v1/archive-list/bg/L_Acts_fn/1/0');
+}
+
+/**
+ * Fetch all promulgated law entries for one year/month bucket.
+ */
+export async function fetchArchivePeriod(year: number, month: number): Promise<ArchiveLawEntry[]> {
+  const url = `https://www.parliament.bg/api/v1/archive-period/bg/L_Acts_fn/${year}/${month}/1/0`;
+  return fetchJson<ArchiveLawEntry[]>(url);
+}
+
+/**
+ * Fetch one promulgated law by parliament act ID.
  */
 export async function fetchLegislation(actId: number): Promise<ParliamentActResponse> {
   const url = `https://www.parliament.bg/api/v1/act/${actId}`;

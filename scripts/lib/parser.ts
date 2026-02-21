@@ -1,17 +1,14 @@
 /**
- * Parser and law catalog for Bulgarian Law MCP real ingestion.
- *
- * Converts /api/v1/act/{id} payloads from parliament.bg into seed JSON documents.
+ * Parser for Bulgarian parliament.bg act payloads.
  */
 
-import type { ParliamentActResponse } from './fetcher.js';
+import type { ArchiveLawEntry, ParliamentActResponse } from './fetcher.js';
 
-export interface TargetLaw {
-  id: string;
+export interface SourceLaw {
   actId: number;
-  titleEn: string;
-  shortName: string;
-  description: string;
+  title: string;
+  promulgationDate?: string;
+  sourceUrl: string;
 }
 
 export interface ParsedProvision {
@@ -32,89 +29,16 @@ export interface ParsedDocument {
   id: string;
   type: 'statute';
   title: string;
-  title_en: string;
-  short_name: string;
+  title_en?: string;
+  short_name?: string;
   status: 'in_force' | 'amended' | 'repealed' | 'not_yet_in_force';
-  issued_date: string;
-  in_force_date: string;
+  issued_date?: string;
+  in_force_date?: string;
   url: string;
-  description: string;
+  description?: string;
   provisions: ParsedProvision[];
   definitions: ParsedDefinition[];
 }
-
-export const TARGET_LAWS: TargetLaw[] = [
-  {
-    id: 'cybersecurity-act-2018',
-    actId: 78098,
-    titleEn: 'Cybersecurity Act',
-    shortName: 'ZKS',
-    description: 'Primary framework for cybersecurity governance and obligations in Bulgaria. Regulates national authorities, incident handling, and requirements for entities covered by the law.',
-  },
-  {
-    id: 'electronic-communications-networks-and-physical-infrastructure-act',
-    actId: 77744,
-    titleEn: 'Electronic Communications Networks and Physical Infrastructure Act',
-    shortName: 'ZECSNPI',
-    description: 'Regulates deployment and access rules for electronic communications networks and supporting physical infrastructure. Covers rights, obligations, and coordination between public and private stakeholders.',
-  },
-  {
-    id: 'electronic-identification-act-2016',
-    actId: 15565,
-    titleEn: 'Electronic Identification Act',
-    shortName: 'ZEI',
-    description: 'Sets the legal framework for electronic identification and trust relationships in digital services. Defines assurance, registration, and supervision requirements for eID means.',
-  },
-  {
-    id: 'digital-content-and-digital-services-and-sale-of-goods-act',
-    actId: 163477,
-    titleEn: 'Digital Content and Digital Services and Sale of Goods Act',
-    shortName: 'ZDCSGS',
-    description: 'Establishes consumer rights and trader obligations for supply of digital content, digital services, and sale of goods. Provides conformity, remedies, and contract-performance rules.',
-  },
-  {
-    id: 'whistleblower-protection-act-2023',
-    actId: 164632,
-    titleEn: 'Whistleblower Protection Act',
-    shortName: 'WPA',
-    description: 'Introduces protection and reporting-channel obligations for persons reporting violations. Sets confidentiality, anti-retaliation safeguards, and enforcement framework.',
-  },
-  {
-    id: 'amendment-personal-data-protection-act-2019',
-    actId: 78179,
-    titleEn: 'Act Amending and Supplementing the Personal Data Protection Act',
-    shortName: 'ZZLD-2019',
-    description: 'Amending act updating the legal framework around personal data protection. Contains detailed revisions and additions to the Personal Data Protection Act.',
-  },
-  {
-    id: 'crypto-asset-markets-act-2025',
-    actId: 165936,
-    titleEn: 'Crypto-Asset Markets Act',
-    shortName: 'CAMA',
-    description: 'Regulates public offering, admission to trading, and service provision related to crypto-assets. Establishes licensing, supervisory powers, and compliance obligations.',
-  },
-  {
-    id: 'accessibility-requirements-for-products-and-services-act',
-    actId: 165848,
-    titleEn: 'Accessibility Requirements for Products and Services Act',
-    shortName: 'ARPSA',
-    description: 'Defines accessibility requirements for products and services and related conformity mechanisms. Aligns market obligations and supervisory controls for accessibility compliance.',
-  },
-  {
-    id: 'credit-servicers-and-credit-purchasers-act',
-    actId: 165829,
-    titleEn: 'Credit Servicers and Credit Purchasers Act',
-    shortName: 'CSCPA',
-    description: 'Sets licensing and operational rules for credit servicers and credit purchasers, including supervisory requirements. Covers borrower protections and conduct obligations.',
-  },
-  {
-    id: 'amendment-electronic-communications-act-2025',
-    actId: 166496,
-    titleEn: 'Act Amending and Supplementing the Electronic Communications Act',
-    shortName: 'ZES-2025',
-    description: 'Amending act introducing revisions to the Electronic Communications Act. Includes updates to definitions, obligations, and sectoral regulatory provisions.',
-  },
-];
 
 const HTML_ENTITY_MAP: Record<string, string> = {
   nbsp: ' ',
@@ -132,9 +56,7 @@ const HTML_ENTITY_MAP: Record<string, string> = {
   ndash: '–',
   mdash: '—',
   hellip: '…',
-  copy: '©',
   sect: '§',
-  euro: '€',
 };
 
 function decodeHtmlEntities(input: string): string {
@@ -151,21 +73,23 @@ function decodeHtmlEntities(input: string): string {
 }
 
 function normalizeWhitespace(text: string): string {
-  return text.replace(/\s+/g, ' ').trim();
+  return text
+    .replace(/\u00a0/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 function htmlToLines(html: string): string[] {
-  const noMsoComments = html
+  const noComments = html
     .replace(/<!--[\s\S]*?-->/g, ' ')
     .replace(/<style[\s\S]*?<\/style>/gi, ' ')
     .replace(/<script[\s\S]*?<\/script>/gi, ' ');
 
-  const withBreaks = noMsoComments
+  const withBreaks = noComments
     .replace(/<\s*br\s*\/?\s*>/gi, '\n')
     .replace(/<\s*\/\s*(p|div|li|tr|h[1-6])\s*>/gi, '\n');
 
   const plain = decodeHtmlEntities(withBreaks.replace(/<[^>]+>/g, ' '))
-    .replace(/\u00a0/g, ' ')
     .replace(/\r/g, '');
 
   return plain
@@ -179,7 +103,7 @@ function normalizeSection(raw: string): string {
 }
 
 function isLikelyChapterHeading(line: string): boolean {
-  return /^(ГЛАВА|Глава|РАЗДЕЛ|Раздел|ОТДЕЛ|Отдел)\b/u.test(line);
+  return /^(ГЛАВА|Глава|РАЗДЕЛ|Раздел|ОТДЕЛ|Отдел|ПРЕХОДНИ И ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ|ДОПЪЛНИТЕЛНИ РАЗПОРЕДБИ)\b/u.test(line);
 }
 
 function isLikelyChapterSubtitle(line: string): boolean {
@@ -187,34 +111,36 @@ function isLikelyChapterSubtitle(line: string): boolean {
   return /^[A-ZА-Я0-9\s.,()\-–]+$/u.test(line);
 }
 
+function pushProvision(
+  out: ParsedProvision[],
+  current: { section: string; chapter?: string; lines: string[] } | null,
+): void {
+  if (!current) return;
+
+  let content = current.lines.join('\n').trim();
+  if (!content) return;
+
+  // Keep per-provision payload bounded; the source remains recoverable via URL.
+  if (content.length > 45000) {
+    content = `${content.slice(0, 45000)}\n[...truncated for storage...]`;
+  }
+
+  out.push({
+    provision_ref: current.section,
+    chapter: current.chapter,
+    section: current.section,
+    title: `Чл. ${current.section}.`,
+    content,
+  });
+}
+
 function extractProvisions(lines: string[]): ParsedProvision[] {
   const articleRegex = /^Чл\.\s*(\d+[а-яА-Я]?)\.\s*(.*)$/u;
 
-  let chapter: string | undefined;
-  let chapterNeedsSubtitle = false;
-
   const provisions: ParsedProvision[] = [];
   let current: { section: string; chapter?: string; lines: string[] } | null = null;
-
-  const pushCurrent = (): void => {
-    if (!current) return;
-    const content = current.lines.join('\n').trim();
-    if (!content) {
-      current = null;
-      return;
-    }
-
-    const section = current.section;
-    provisions.push({
-      provision_ref: section,
-      chapter: current.chapter,
-      section,
-      title: `Чл. ${section}.`,
-      content,
-    });
-
-    current = null;
-  };
+  let chapter: string | undefined;
+  let chapterNeedsSubtitle = false;
 
   for (const line of lines) {
     if (isLikelyChapterHeading(line)) {
@@ -232,7 +158,7 @@ function extractProvisions(lines: string[]): ParsedProvision[] {
 
     const articleMatch = line.match(articleRegex);
     if (articleMatch) {
-      pushCurrent();
+      pushProvision(provisions, current);
       current = {
         section: normalizeSection(articleMatch[1]),
         chapter,
@@ -246,9 +172,24 @@ function extractProvisions(lines: string[]): ParsedProvision[] {
     }
   }
 
-  pushCurrent();
+  pushProvision(provisions, current);
 
-  return provisions;
+  if (provisions.length > 0) {
+    return provisions;
+  }
+
+  // Fallback for acts that do not expose explicit "Чл." markers in the payload.
+  const fallbackContent = lines.join('\n').slice(0, 45000).trim();
+  if (!fallbackContent) {
+    return [];
+  }
+
+  return [{
+    provision_ref: 'body',
+    section: 'body',
+    title: 'Основен текст',
+    content: fallbackContent,
+  }];
 }
 
 function extractDefinitions(provisions: ParsedProvision[]): ParsedDefinition[] {
@@ -263,14 +204,14 @@ function extractDefinitions(provisions: ParsedProvision[]): ParsedDefinition[] {
       continue;
     }
 
-    const buckets = [quotedDefinitionRegex, numberedDefinitionRegex];
-    for (const regex of buckets) {
-      regex.lastIndex = 0;
+    const patterns = [quotedDefinitionRegex, numberedDefinitionRegex];
+    for (const pattern of patterns) {
+      pattern.lastIndex = 0;
       let match: RegExpExecArray | null;
-      while ((match = regex.exec(provision.content)) !== null) {
+
+      while ((match = pattern.exec(provision.content)) !== null) {
         const term = normalizeWhitespace(match[1]);
         const definition = normalizeWhitespace(match[2]);
-
         if (!term || !definition || term.length > 160 || definition.length < 5) {
           continue;
         }
@@ -285,7 +226,7 @@ function extractDefinitions(provisions: ParsedProvision[]): ParsedDefinition[] {
           source_provision: provision.provision_ref,
         });
 
-        if (definitions.length >= 250) {
+        if (definitions.length >= 80) {
           return definitions;
         }
       }
@@ -295,30 +236,42 @@ function extractDefinitions(provisions: ParsedProvision[]): ParsedDefinition[] {
   return definitions;
 }
 
-function toIsoDate(value: string | undefined): string {
-  if (!value) return '';
+function toIsoDate(value: string | undefined): string | undefined {
+  if (!value) return undefined;
   return value.slice(0, 10);
 }
 
-export function parseActToDocument(act: ParliamentActResponse, target: TargetLaw): ParsedDocument {
+export function buildDocumentId(actId: number): string {
+  return `act-${actId}`;
+}
+
+export function sourceLawFromArchive(entry: ArchiveLawEntry): SourceLaw {
+  return {
+    actId: entry.t_id,
+    title: normalizeWhitespace(entry.t_label),
+    promulgationDate: toIsoDate(entry.t_date),
+    sourceUrl: `https://www.parliament.bg/bg/laws/ID/${entry.t_id}`,
+  };
+}
+
+export function parseActToDocument(act: ParliamentActResponse, source: SourceLaw): ParsedDocument {
   const lines = htmlToLines(act.L_ActL_final_body);
   const provisions = extractProvisions(lines);
   const definitions = extractDefinitions(provisions);
 
-  const issuedDate = toIsoDate(act.L_Act_date) || toIsoDate(act.L_Act_date2);
-  const inForceDate = toIsoDate(act.L_Act_date2) || issuedDate;
+  const issuedDate = toIsoDate(act.L_Act_date) ?? source.promulgationDate;
+  const inForceDate = toIsoDate(act.L_Act_date2) ?? source.promulgationDate;
 
   return {
-    id: target.id,
+    id: buildDocumentId(act.L_Act_id),
     type: 'statute',
-    title: normalizeWhitespace(act.L_ActL_final),
-    title_en: target.titleEn,
-    short_name: target.shortName,
+    title: normalizeWhitespace(act.L_ActL_final || source.title),
+    short_name: act.L_Act_sign ? normalizeWhitespace(act.L_Act_sign) : undefined,
     status: 'in_force',
     issued_date: issuedDate,
     in_force_date: inForceDate,
-    url: `https://www.parliament.bg/bg/laws/ID/${act.L_Act_id}`,
-    description: target.description,
+    url: source.sourceUrl,
+    description: `Official promulgated act published by the National Assembly of the Republic of Bulgaria (act ID ${act.L_Act_id}).`,
     provisions,
     definitions,
   };

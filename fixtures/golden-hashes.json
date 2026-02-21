@@ -6,7 +6,7 @@
   "provisions": [
     {
       "id": "bg-hash-001",
-      "description": "Cybersecurity Act (2018) Art. 1",
+      "description": "Cybersecurity Act (act-78098) Art. 1",
       "upstream_url": "https://www.parliament.bg/bg/laws/ID/78098",
       "selector_hint": "Чл. 1",
       "expected_sha256": "COMPUTE_ON_FIRST_INGEST",
@@ -14,7 +14,7 @@
     },
     {
       "id": "bg-hash-002",
-      "description": "Electronic Identification Act (2016) Art. 1",
+      "description": "Electronic Identification Act (act-15565) Art. 1",
       "upstream_url": "https://www.parliament.bg/bg/laws/ID/15565",
       "selector_hint": "Чл. 1",
       "expected_sha256": "COMPUTE_ON_FIRST_INGEST",
@@ -22,7 +22,7 @@
     },
     {
       "id": "bg-hash-003",
-      "description": "Crypto-Asset Markets Act (2025) Art. 1",
+      "description": "Crypto-Asset Markets Act (act-165936) Art. 1",
       "upstream_url": "https://www.parliament.bg/bg/laws/ID/165936",
       "selector_hint": "Чл. 1",
       "expected_sha256": "COMPUTE_ON_FIRST_INGEST",

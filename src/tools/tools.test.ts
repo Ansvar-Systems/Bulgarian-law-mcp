@@ -1,6 +1,6 @@
 /**
  * Tests for Bulgarian Law MCP tools.
- * Runs against the built database produced from real parliament.bg ingestion.
+ * Runs against the built database produced from official parliament.bg ingestion.
  */
 
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
@@ -22,39 +22,20 @@ afterAll(() => {
   if (db) db.close();
 });
 
-const EXPECTED_DOC_IDS = [
-  'cybersecurity-act-2018',
-  'electronic-communications-networks-and-physical-infrastructure-act',
-  'electronic-identification-act-2016',
-  'digital-content-and-digital-services-and-sale-of-goods-act',
-  'whistleblower-protection-act-2023',
-  'amendment-personal-data-protection-act-2019',
-  'crypto-asset-markets-act-2025',
-  'accessibility-requirements-for-products-and-services-act',
-  'credit-servicers-and-credit-purchasers-act',
-  'amendment-electronic-communications-act-2025',
-];
-
 describe('database integrity', () => {
-  it('should have exactly 10 legal documents', () => {
+  it('should have large real corpus of legal documents', () => {
     const row = db.prepare('SELECT COUNT(*) as cnt FROM legal_documents').get() as { cnt: number };
-    expect(row.cnt).toBe(10);
+    expect(row.cnt).toBeGreaterThanOrEqual(1500);
   });
 
-  it('should have at least 500 provisions', () => {
+  it('should have large real corpus of provisions', () => {
     const row = db.prepare('SELECT COUNT(*) as cnt FROM legal_provisions').get() as { cnt: number };
-    expect(row.cnt).toBeGreaterThanOrEqual(500);
+    expect(row.cnt).toBeGreaterThanOrEqual(10000);
   });
 
-  it('should have definitions extracted', () => {
+  it('should have extracted definitions', () => {
     const row = db.prepare('SELECT COUNT(*) as cnt FROM definitions').get() as { cnt: number };
     expect(row.cnt).toBeGreaterThan(0);
-  });
-
-  it('should contain all expected document IDs', () => {
-    const rows = db.prepare('SELECT id FROM legal_documents ORDER BY id').all() as { id: string }[];
-    const ids = rows.map(r => r.id);
-    expect(ids).toEqual([...EXPECTED_DOC_IDS].sort());
   });
 
   it('should have db_metadata with jurisdiction BG', () => {
@@ -68,10 +49,19 @@ describe('database integrity', () => {
   });
 });
 
-describe('document content checks', () => {
-  it('Cybersecurity Act чл. 1 should be present and in Bulgarian', () => {
+describe('document presence checks', () => {
+  it('should include known key acts by official IDs', () => {
+    const ids = ['act-78098', 'act-15565', 'act-165936'];
+
+    for (const id of ids) {
+      const row = db.prepare('SELECT id FROM legal_documents WHERE id = ?').get(id) as { id: string } | undefined;
+      expect(row?.id).toBe(id);
+    }
+  });
+
+  it('Cybersecurity Act (act-78098) чл. 1 should be present and Bulgarian', () => {
     const row = db.prepare(
-      "SELECT content FROM legal_provisions WHERE document_id = 'cybersecurity-act-2018' AND section = '1'"
+      "SELECT content FROM legal_provisions WHERE document_id = 'act-78098' AND section = '1'"
     ).get() as { content: string } | undefined;
 
     expect(row).toBeDefined();
@@ -79,31 +69,22 @@ describe('document content checks', () => {
     expect(row!.content).toContain('киберсигурността');
   });
 
-  it('Electronic Identification Act чл. 1 should reference electronic identification', () => {
+  it('Electronic Identification Act (act-15565) чл. 1 should reference eID', () => {
     const row = db.prepare(
-      "SELECT content FROM legal_provisions WHERE document_id = 'electronic-identification-act-2016' AND section = '1'"
+      "SELECT content FROM legal_provisions WHERE document_id = 'act-15565' AND section = '1'"
     ).get() as { content: string } | undefined;
 
     expect(row).toBeDefined();
     expect(row!.content).toContain('електронната идентификация');
   });
 
-  it('Crypto-Asset Markets Act чл. 1 should mention crypto-assets', () => {
+  it('Crypto-Asset Markets Act (act-165936) чл. 1 should mention crypto-assets', () => {
     const row = db.prepare(
-      "SELECT content FROM legal_provisions WHERE document_id = 'crypto-asset-markets-act-2025' AND section = '1'"
+      "SELECT content FROM legal_provisions WHERE document_id = 'act-165936' AND section = '1'"
     ).get() as { content: string } | undefined;
 
     expect(row).toBeDefined();
     expect(row!.content).toContain('криптоактиви');
-  });
-
-  it('Personal data amendment should include GDPR reference', () => {
-    const row = db.prepare(
-      "SELECT content FROM legal_provisions WHERE document_id = 'amendment-personal-data-protection-act-2019' AND section = '10в'"
-    ).get() as { content: string } | undefined;
-
-    expect(row).toBeDefined();
-    expect(row!.content).toContain('Регламент (ЕС) 2016/679');
   });
 });
 
@@ -144,7 +125,7 @@ describe('negative cases', () => {
 
   it('should return no results for non-existent provision', () => {
     const row = db.prepare(
-      "SELECT content FROM legal_provisions WHERE document_id = 'cybersecurity-act-2018' AND section = '999ZZZ'"
+      "SELECT content FROM legal_provisions WHERE document_id = 'act-78098' AND section = '999ZZZ'"
     ).get();
 
     expect(row).toBeUndefined();

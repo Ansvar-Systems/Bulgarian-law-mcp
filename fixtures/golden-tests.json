@@ -2,15 +2,15 @@
   "$schema": "./golden-tests.schema.json",
   "version": "1.0",
   "mcp_name": "Bulgarian Law MCP",
-  "description": "Golden contract tests for real-data Bulgarian Law MCP ingestion from parliament.bg",
+  "description": "Golden contract tests for full-corpus Bulgarian Law MCP ingestion from parliament.bg",
   "tests": [
     {
       "id": "bg-001",
       "category": "article_retrieval",
-      "description": "Retrieve Cybersecurity Act (2018) Art. 1",
+      "description": "Retrieve Cybersecurity Act Art. 1 (act-78098)",
       "tool": "get_provision",
       "input": {
-        "document_id": "cybersecurity-act-2018",
+        "document_id": "act-78098",
         "section": "1"
       },
       "assertions": {
@@ -23,10 +23,10 @@
     {
       "id": "bg-002",
       "category": "article_retrieval",
-      "description": "Retrieve Electronic Identification Act (2016) Art. 1",
+      "description": "Retrieve Electronic Identification Act Art. 1 (act-15565)",
       "tool": "get_provision",
       "input": {
-        "document_id": "electronic-identification-act-2016",
+        "document_id": "act-15565",
         "section": "1"
       },
       "assertions": {
@@ -39,10 +39,10 @@
     {
       "id": "bg-003",
       "category": "article_retrieval",
-      "description": "Retrieve Crypto-Asset Markets Act (2025) Art. 1",
+      "description": "Retrieve Crypto-Asset Markets Act Art. 1 (act-165936)",
       "tool": "get_provision",
       "input": {
-        "document_id": "crypto-asset-markets-act-2025",
+        "document_id": "act-165936",
         "section": "1"
       },
       "assertions": {
@@ -83,10 +83,10 @@
     {
       "id": "bg-006",
       "category": "citation_roundtrip",
-      "description": "Citation for Cybersecurity Act uses parliament.bg URL",
+      "description": "Citation uses parliament.bg URL",
       "tool": "get_provision",
       "input": {
-        "document_id": "cybersecurity-act-2018",
+        "document_id": "act-78098",
         "section": "1"
       },
       "assertions": {
@@ -114,7 +114,7 @@
       "description": "Malformed section returns graceful empty result",
       "tool": "get_provision",
       "input": {
-        "document_id": "cybersecurity-act-2018",
+        "document_id": "act-78098",
         "section": "999ZZZ-INVALID"
       },
       "assertions": {

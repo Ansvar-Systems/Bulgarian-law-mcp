@@ -3,23 +3,17 @@ mcp_name: "Bulgarian Law MCP"
 jurisdiction: "BG"
 
 sources:
-  - name: "lex.bg"
-    authority: "Народно събрание (National Assembly of Bulgaria)"
-    official_portal: "https://lex.bg"
-    retrieval_method: "HTML_SCRAPE"
-    update_frequency: "weekly"
-    last_ingested: "2026-02-21"
+  - name: "Parliament of the Republic of Bulgaria API"
+    authority: "Народно събрание на Република България"
+    official_portal: "https://www.parliament.bg"
+    retrieval_method: "API"
+    update_frequency: "unknown"
     license_or_terms:
-      type: "Bulgarian Government Open Data (public domain under Bulgarian Copyright Act Art. 4)"
-      url: "https://lex.bg"
-      summary: "Official legislative texts are public domain"
+      type: "government_terms"
+      url: "https://www.parliament.bg/bg/laws"
+      summary: "Legislative acts are publicly published by the National Assembly and exposed through parliament.bg endpoints."
     coverage:
-      scope: "Key Bulgarian legislation covering data protection, cybersecurity, e-commerce, criminal law cyber provisions, and related statutes"
-      limitations: "AI-generated seed data; full official ingestion pending"
+      scope: "Promulgated laws available through /api/v1/act/{id} with archive index endpoints for law discovery."
+      limitations: "Archive API covers 2006-present and emphasizes promulgated acts/amendments rather than a fully consolidated historical corpus."
     languages:
       - "bg"
-
-data_freshness:
-  automated_checks: true
-  check_frequency: "weekly"
-  last_verified: "2026-02-21"

@@ -1,73 +1,84 @@
 /**
- * Rate-limited HTTP client for Bulgarian legislation from the Sejm ELI API.
+ * Rate-limited HTTP fetcher for Bulgarian legislation.
  *
- * Data source: api.sejm.gov.pl — the official ELI (European Legislation Identifier)
- * API provided by the Chancellery of the Sejm of the Republic of Poland.
- *
- * URL patterns:
- *   Metadata: https://api.sejm.gov.pl/eli/acts/DU/{YEAR}/{POZ}
- *   HTML text: https://api.sejm.gov.pl/eli/acts/DU/{YEAR}/{POZ}/text.html
- *
- * - 500ms minimum delay between requests (respectful to government servers)
- * - User-Agent header identifying the MCP
- * - Retry on 429/5xx with exponential backoff
- * - No auth needed (public government data)
+ * Source: Parliament of the Republic of Bulgaria API (parliament.bg).
+ * Endpoint pattern: /api/v1/act/{id}
  */
 
-const USER_AGENT = 'Bulgarian-Law-MCP/1.0 (https://github.com/Ansvar-Systems/bulgarian-law-mcp; hello@ansvar.ai)';
-const MIN_DELAY_MS = 500;
+export interface ParliamentActResponse {
+  L_Act_id: number;
+  L_Act_sign?: string;
+  L_Act_date?: string;
+  L_Act_date2?: string;
+  L_Act_dv_iss?: string;
+  L_Act_dv_year?: number;
+  L_ActL_final: string;
+  L_ActL_final_body: string;
+}
 
-let lastRequestTime = 0;
+const USER_AGENT = 'Ansvar-Law-MCP/1.0 (real-ingestion; hello@ansvar.eu)';
+const MIN_DELAY_MS = 1200;
 
-async function rateLimit(): Promise<void> {
+let lastRequestAt = 0;
+
+function sleep(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function applyRateLimit(): Promise<void> {
   const now = Date.now();
-  const elapsed = now - lastRequestTime;
+  const elapsed = now - lastRequestAt;
   if (elapsed < MIN_DELAY_MS) {
-    await new Promise(resolve => setTimeout(resolve, MIN_DELAY_MS - elapsed));
+    await sleep(MIN_DELAY_MS - elapsed);
   }
-  lastRequestTime = Date.now();
+  lastRequestAt = Date.now();
 }
 
-export interface FetchResult {
-  status: number;
-  body: string;
-  contentType: string;
-  url: string;
-}
+async function fetchJson<T>(url: string, maxRetries = 2): Promise<T> {
+  await applyRateLimit();
 
-/**
- * Fetch a URL with rate limiting and proper headers.
- * Retries up to 3 times on 429/5xx errors with exponential backoff.
- */
-export async function fetchWithRateLimit(url: string, maxRetries = 3): Promise<FetchResult> {
-  await rateLimit();
+  let lastError: unknown;
 
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
-    const response = await fetch(url, {
-      headers: {
-        'User-Agent': USER_AGENT,
-        'Accept': 'text/html, application/json, */*',
-      },
-      redirect: 'follow',
-    });
+    try {
+      const response = await fetch(url, {
+        headers: {
+          'User-Agent': USER_AGENT,
+          'Accept': 'application/json, text/plain, */*',
+        },
+      });
 
-    if (response.status === 429 || response.status >= 500) {
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${url}`);
+      }
+
+      return await response.json() as T;
+    } catch (error) {
+      lastError = error;
+
       if (attempt < maxRetries) {
-        const backoff = Math.pow(2, attempt + 1) * 1000;
-        console.log(`  HTTP ${response.status} for ${url}, retrying in ${backoff}ms...`);
-        await new Promise(resolve => setTimeout(resolve, backoff));
+        const backoffMs = (attempt + 1) * 1500;
+        await sleep(backoffMs);
         continue;
       }
     }
-
-    const body = await response.text();
-    return {
-      status: response.status,
-      body,
-      contentType: response.headers.get('content-type') ?? '',
-      url: response.url,
-    };
   }
 
-  throw new Error(`Failed to fetch ${url} after ${maxRetries} retries`);
+  throw new Error(
+    `Failed to fetch JSON from ${url}: ${lastError instanceof Error ? lastError.message : String(lastError)}`
+  );
+}
+
+/**
+ * Fetch a promulgated law by parliament act ID.
+ */
+export async function fetchLegislation(actId: number): Promise<ParliamentActResponse> {
+  const url = `https://www.parliament.bg/api/v1/act/${actId}`;
+  const payload = await fetchJson<ParliamentActResponse>(url);
+
+  if (!payload?.L_ActL_final_body || !payload?.L_ActL_final) {
+    throw new Error(`Incomplete response for act ${actId}`);
+  }
+
+  return payload;
 }

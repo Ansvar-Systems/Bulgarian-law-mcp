@@ -33,8 +33,8 @@ export function generateResponseMetadata(
     data_source: 'lex.bg (lex.bg) — Народно събрание (National Assembly of Bulgaria)',
     jurisdiction: 'BG',
     disclaimer:
-      'This data is sourced from the lex.bg under CC BY 4.0 licence. ' +
-      'The authoritative versions are maintained by the Australian Government. ' +
+      'This data is sourced from the lex.bg under public domain. ' +
+      'The authoritative versions are maintained by Народно събрание (National Assembly of Bulgaria). ' +
       'Always verify with the official lex.bg portal (lex.bg).',
     freshness,
   };

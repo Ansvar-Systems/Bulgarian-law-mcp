@@ -45,7 +45,7 @@ export function getAbout(db: InstanceType<typeof Database>, context: AboutContex
     },
     data_source: {
       name: 'lex.bg',
-      authority: 'Bulgarian Government, Office of Parliamentary Counsel',
+      authority: 'Народно събрание (National Assembly of Bulgaria)',
       url: 'https://www.lex.bg',
       license: 'Creative Commons Attribution 4.0 International (CC BY 4.0)',
       jurisdiction: 'BG',

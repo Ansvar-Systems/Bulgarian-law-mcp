@@ -1,0 +1,143 @@
+{
+  "id": "zeu-electronic-governance",
+  "type": "statute",
+  "title": "Закон за електронното управление (ЗЕУ)",
+  "title_en": "Electronic Governance Act",
+  "short_name": "ZEU",
+  "status": "in_force",
+  "issued_date": "2007-06-12",
+  "in_force_date": "2008-06-13",
+  "url": "https://lex.bg/laws/ldoc/2135555445",
+  "description": "Bulgaria's e-government legislation governing the provision of administrative services by electronic means, interoperability of information systems, and digital transformation of public administration. Aligned with the EU e-Government Action Plan and Regulation (EU) 2018/1724 (Single Digital Gateway).",
+  "provisions": [
+    {
+      "provision_ref": "1",
+      "section": "1",
+      "chapter": "Chapter 1 - General Provisions",
+      "title": "Subject and scope",
+      "content": "This Act regulates the provision of administrative services by electronic means by the administrative bodies, the persons performing public functions, and the organisations providing public services. This Act also regulates the operation of information systems in the administration and interoperability requirements in accordance with European interoperability frameworks."
+    },
+    {
+      "provision_ref": "2",
+      "section": "2",
+      "chapter": "Chapter 1 - General Provisions",
+      "title": "Principles of electronic governance",
+      "content": "Electronic governance shall be based on the following principles: primacy of the electronic form in the activities of the administration; providing services through a single point of access; interoperability of information systems; once-only principle — the administration shall not require from citizens and businesses information that is already available in its registers; technological neutrality; security and confidentiality of the processed information."
+    },
+    {
+      "provision_ref": "3",
+      "section": "3",
+      "chapter": "Chapter 1 - General Provisions",
+      "title": "State e-Government Agency",
+      "content": "The State e-Government Agency (SEGA) shall implement the policy in the field of electronic governance and shall be responsible for the maintenance, development and security of the shared e-government resources. SEGA shall operate the unified electronic communications network of the state administration, the government cloud, and the centralised systems for electronic identification and electronic services delivery."
+    },
+    {
+      "provision_ref": "5",
+      "section": "5",
+      "chapter": "Chapter 2 - Electronic Administrative Services",
+      "title": "Right to electronic service delivery",
+      "content": "Every citizen and legal person shall have the right to request and receive administrative services by electronic means. Administrative bodies shall not refuse to accept documents and provide services by electronic means where the technical conditions allow. Administrative bodies shall provide the possibility for electronic payment of any fees associated with administrative services."
+    },
+    {
+      "provision_ref": "6",
+      "section": "6",
+      "chapter": "Chapter 2 - Electronic Administrative Services",
+      "title": "Electronic service delivery channels",
+      "content": "Administrative services by electronic means shall be provided through: the unified portal for access to electronic administrative services (egov.bg); the information systems of the administrative bodies; electronic communication with the administrative bodies via electronic mail or other electronic means; automated systems for information exchange between administrative bodies."
+    },
+    {
+      "provision_ref": "7",
+      "section": "7",
+      "chapter": "Chapter 2 - Electronic Administrative Services",
+      "title": "Single point of access",
+      "content": "The unified portal for access to electronic administrative services shall provide a single point of access for citizens and businesses to all electronic administrative services. The portal shall provide information about available services, required documents, fees, and time limits. The portal shall enable online submission of requests, tracking of the status of requests, and receipt of results by electronic means."
+    },
+    {
+      "provision_ref": "9",
+      "section": "9",
+      "chapter": "Chapter 3 - Registers and Interoperability",
+      "title": "Administrative registers",
+      "content": "Administrative bodies shall maintain registers in electronic form. Primary registers shall be the authoritative source of data within the scope of the respective administrative body. Derived data from primary registers shall be used by other administrative bodies through interoperability services without requiring citizens or businesses to provide the same data again, in accordance with the once-only principle."
+    },
+    {
+      "provision_ref": "10",
+      "section": "10",
+      "chapter": "Chapter 3 - Registers and Interoperability",
+      "title": "Interoperability",
+      "content": "The information systems of the administrative bodies shall be interoperable, enabling automated exchange of data and documents between them. Interoperability shall be ensured at the organisational, semantic, and technical levels in accordance with the European Interoperability Framework. The State e-Government Agency shall establish and maintain a government integration platform enabling secure data exchange between the information systems of the administration."
+    },
+    {
+      "provision_ref": "12",
+      "section": "12",
+      "chapter": "Chapter 3 - Registers and Interoperability",
+      "title": "Open data",
+      "content": "Administrative bodies shall publish datasets in open format on the open data portal (opendata.government.bg) in accordance with the requirements of Directive (EU) 2019/1024 on open data and the re-use of public sector information. High-value datasets as defined by the European Commission shall be published free of charge, in machine-readable format, through application programming interfaces and, where relevant, as bulk download."
+    },
+    {
+      "provision_ref": "15",
+      "section": "15",
+      "chapter": "Chapter 4 - Information Security in the Administration",
+      "title": "Security requirements",
+      "content": "Administrative bodies shall ensure the security of their information systems and the information processed therein by implementing appropriate technical and organisational security measures. The minimum security requirements shall be determined by ordinance of the Council of Ministers. The information security measures shall cover: access control; encryption of communications and data at rest; regular security assessments; incident management; business continuity and disaster recovery."
+    },
+    {
+      "provision_ref": "16",
+      "section": "16",
+      "chapter": "Chapter 4 - Information Security in the Administration",
+      "title": "Information security audits",
+      "content": "The information systems of the administrative bodies shall be subject to regular security audits. The State e-Government Agency shall conduct or coordinate security audits of shared e-government resources. Administrative bodies shall conduct internal security audits of their own information systems at least once a year and upon significant changes to the systems."
+    },
+    {
+      "provision_ref": "17",
+      "section": "17",
+      "chapter": "Chapter 4 - Information Security in the Administration",
+      "title": "Incident response",
+      "content": "Administrative bodies shall establish procedures for detecting, reporting, and responding to information security incidents. Incidents affecting shared e-government resources shall be reported immediately to the State e-Government Agency and the national CSIRT. Administrative bodies shall maintain logs of security incidents and conduct post-incident analysis."
+    },
+    {
+      "provision_ref": "20",
+      "section": "20",
+      "chapter": "Chapter 5 - Government Cloud",
+      "title": "Government cloud infrastructure",
+      "content": "The government cloud shall be a shared computing infrastructure providing computing resources, storage, and platform services to administrative bodies. The government cloud shall be operated by the State e-Government Agency. Administrative bodies shall migrate their information systems to the government cloud unless justified security or operational reasons require on-premises operation. The government cloud infrastructure shall be located on the territory of the Republic of Bulgaria."
+    },
+    {
+      "provision_ref": "22",
+      "section": "22",
+      "chapter": "Chapter 5 - Government Cloud",
+      "title": "Cloud security",
+      "content": "The government cloud infrastructure shall meet the security requirements established by the Council of Ministers. Data classified as a state secret shall not be processed in the government cloud without the approval of the State Agency for National Security. The government cloud provider shall implement measures compliant with ISO 27001 and the requirements of Regulation (EU) 2016/679 for the processing of personal data."
+    },
+    {
+      "provision_ref": "25",
+      "section": "25",
+      "chapter": "Chapter 6 - Single Digital Gateway",
+      "title": "Cross-border access",
+      "content": "The Republic of Bulgaria shall ensure cross-border access to electronic administrative services in accordance with Regulation (EU) 2018/1724 of the European Parliament and of the Council establishing a single digital gateway to provide access to information, to procedures and to assistance and problem-solving services. Administrative bodies shall make their services accessible through the Single Digital Gateway for cross-border users."
+    },
+    {
+      "provision_ref": "28",
+      "section": "28",
+      "chapter": "Chapter 7 - Sanctions",
+      "title": "Administrative sanctions",
+      "content": "An administrative body that fails to provide an administrative service by electronic means where the conditions for this are met shall be subject to a sanction of BGN 500 to BGN 5,000 imposed on the head of the body. An administrative body that fails to comply with interoperability requirements shall be subject to a sanction of BGN 1,000 to BGN 10,000. For repeated violations, the sanction shall be doubled."
+    }
+  ],
+  "definitions": [
+    {
+      "term": "Electronic governance",
+      "definition": "The use of information and communication technologies in the activities of administrative bodies for the provision of administrative services and the exchange of information.",
+      "source_provision": "1"
+    },
+    {
+      "term": "Once-only principle",
+      "definition": "The principle that the administration shall not require from citizens and businesses information that is already available in its registers.",
+      "source_provision": "2"
+    },
+    {
+      "term": "Government cloud",
+      "definition": "A shared computing infrastructure providing computing resources, storage, and platform services to administrative bodies, operated by the State e-Government Agency.",
+      "source_provision": "20"
+    }
+  ]
+}

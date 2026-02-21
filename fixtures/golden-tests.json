@@ -1,0 +1,183 @@
+{
+  "$schema": "./golden-tests.schema.json",
+  "version": "1.0",
+  "mcp_name": "Bulgarian Law MCP",
+  "description": "Golden contract tests for the Bulgarian Law MCP -- 12 tests covering article retrieval, search, citation, cross-reference, and negative cases",
+  "tests": [
+    {
+      "id": "bg-001",
+      "category": "article_retrieval",
+      "description": "Retrieve ZZLD Art. 1 (Закон за защита на личните данни) -- scope and purpose of GDPR implementing provisions",
+      "tool": "get_provision",
+      "input": {
+        "document_id": "Personal Data Protection Act",
+        "section": "1"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "any_result_contains": ["personal data", "Regulation (EU) 2016/679", "processing"],
+        "fields_present": ["content", "provision_ref"],
+        "text_not_empty": true
+      }
+    },
+    {
+      "id": "bg-002",
+      "category": "article_retrieval",
+      "description": "Retrieve Cybersecurity Act Art. 1 (Закон за киберсигурност) -- scope of Bulgaria's NIS implementation",
+      "tool": "get_provision",
+      "input": {
+        "document_id": "Cybersecurity Act",
+        "section": "1"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "any_result_contains": ["cybersecurity", "Directive (EU) 2016/1148", "network and information systems"],
+        "fields_present": ["content", "provision_ref"],
+        "text_not_empty": true
+      }
+    },
+    {
+      "id": "bg-003",
+      "category": "article_retrieval",
+      "description": "Retrieve Penal Code Art. 319a -- unauthorised access to a computer system",
+      "tool": "get_provision",
+      "input": {
+        "document_id": "penal-code-cybercrime",
+        "section": "319a"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "any_result_contains": ["unauthorised access", "computer system", "imprisonment"],
+        "fields_present": ["content", "provision_ref"],
+        "text_not_empty": true
+      }
+    },
+    {
+      "id": "bg-004",
+      "category": "article_retrieval",
+      "description": "Retrieve Electronic Commerce Act Art. 15 -- hosting liability exemption (e-Commerce Directive)",
+      "tool": "get_provision",
+      "input": {
+        "document_id": "Electronic Commerce Act",
+        "section": "15"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "any_result_contains": ["storage", "information", "recipient", "knowledge"],
+        "fields_present": ["content"],
+        "text_not_empty": true
+      }
+    },
+    {
+      "id": "bg-005",
+      "category": "search",
+      "description": "Full-text search for 'personal data' returns ZZLD and related provisions",
+      "tool": "search_legislation",
+      "input": {
+        "query": "personal data"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "min_results": 1,
+        "any_result_contains": ["personal data", "data protection", "Regulation (EU) 2016/679"]
+      }
+    },
+    {
+      "id": "bg-006",
+      "category": "search",
+      "description": "Full-text search for 'cybersecurity' returns Cybersecurity Act and related provisions",
+      "tool": "search_legislation",
+      "input": {
+        "query": "cybersecurity"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "min_results": 1,
+        "any_result_contains": ["cybersecurity", "network and information systems", "incident"]
+      }
+    },
+    {
+      "id": "bg-007",
+      "category": "search",
+      "description": "Full-text search for 'electronic signature' returns ZEDEP provisions",
+      "tool": "search_legislation",
+      "input": {
+        "query": "electronic signature"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "min_results": 1,
+        "any_result_contains": ["electronic signature", "qualified", "certificate", "trust service"]
+      }
+    },
+    {
+      "id": "bg-008",
+      "category": "citation_roundtrip",
+      "description": "Citation for ZZLD Art. 4 includes lex.bg URL pattern",
+      "tool": "get_provision",
+      "input": {
+        "document_id": "zzld-personal-data-protection",
+        "section": "4"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "citation_url_pattern": "lex\\.bg",
+        "text_not_empty": true
+      }
+    },
+    {
+      "id": "bg-009",
+      "category": "citation_roundtrip",
+      "description": "Citation for Cybersecurity Act Art. 10 includes lex.bg URL pattern",
+      "tool": "get_provision",
+      "input": {
+        "document_id": "cybersecurity-act",
+        "section": "10"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "citation_url_pattern": "lex\\.bg",
+        "text_not_empty": true
+      }
+    },
+    {
+      "id": "bg-010",
+      "category": "eu_cross_reference",
+      "description": "ZZLD cross-reference to EU GDPR -- Bulgarian ZZLD implements Regulation (EU) 2016/679",
+      "tool": "get_eu_basis",
+      "input": {
+        "document_id": "zzld-personal-data-protection"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "any_result_contains": ["GDPR", "General Data Protection Regulation", "2016/679"]
+      }
+    },
+    {
+      "id": "bg-011",
+      "category": "negative_test",
+      "description": "Non-existent Bulgarian law returns graceful error or empty result",
+      "tool": "get_provision",
+      "input": {
+        "document_id": "Закон за несъществуващи неща от 2099 г.",
+        "section": "1"
+      },
+      "assertions": {
+        "handles_gracefully": true
+      }
+    },
+    {
+      "id": "bg-012",
+      "category": "negative_test",
+      "description": "Malformed article number returns graceful error or empty result",
+      "tool": "get_provision",
+      "input": {
+        "document_id": "zzld-personal-data-protection",
+        "section": "999ZZZ-INVALID"
+      },
+      "assertions": {
+        "handles_gracefully": true
+      }
+    }
+  ]
+}

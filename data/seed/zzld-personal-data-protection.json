@@ -1,0 +1,171 @@
+{
+  "id": "zzld-personal-data-protection",
+  "type": "statute",
+  "title": "Закон за защита на личните данни (ЗЗЛД)",
+  "title_en": "Personal Data Protection Act",
+  "short_name": "ZZLD",
+  "status": "in_force",
+  "issued_date": "2002-01-04",
+  "in_force_date": "2002-01-01",
+  "url": "https://lex.bg/laws/ldoc/2135426048",
+  "description": "Bulgaria's primary data protection legislation, implementing Regulation (EU) 2016/679 (GDPR). Amended substantially in 2019 to align with the GDPR framework. Governs the processing of personal data, data subject rights, supervisory authority (CPDP), and sanctions.",
+  "provisions": [
+    {
+      "provision_ref": "1",
+      "section": "1",
+      "chapter": "Chapter 1 - General Provisions",
+      "title": "Scope",
+      "content": "This Act regulates the public relations related to the protection of the rights of natural persons with regard to the processing of their personal data and the free movement of personal data. This Act supplements the directly applicable provisions of Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation)."
+    },
+    {
+      "provision_ref": "2",
+      "section": "2",
+      "chapter": "Chapter 1 - General Provisions",
+      "title": "Definitions",
+      "content": "For the purposes of this Act, the definitions set out in Article 4 of the General Data Protection Regulation shall apply. In addition, 'Commission' means the Commission for Personal Data Protection established under this Act; 'special categories of personal data' means the categories of personal data referred to in Article 9(1) of the General Data Protection Regulation."
+    },
+    {
+      "provision_ref": "3",
+      "section": "3",
+      "chapter": "Chapter 1 - General Provisions",
+      "title": "Territorial scope",
+      "content": "This Act shall apply to the processing of personal data carried out wholly or partly by automated means and to the processing of personal data other than by automated means which form part of a filing system or are intended to form part of a filing system, where the controller or processor is established in the Republic of Bulgaria, regardless of whether the processing takes place in the Republic of Bulgaria or not."
+    },
+    {
+      "provision_ref": "4",
+      "section": "4",
+      "chapter": "Chapter 2 - Commission for Personal Data Protection",
+      "title": "Establishment of CPDP",
+      "content": "The Commission for Personal Data Protection (CPDP) is an independent state authority that supervises the observance of the legislation on the protection of personal data. The Commission is the supervisory authority within the meaning of Article 51 of Regulation (EU) 2016/679. The Commission shall act with full independence in the exercise of its tasks and powers conferred upon it by this Act and by the General Data Protection Regulation."
+    },
+    {
+      "provision_ref": "5",
+      "section": "5",
+      "chapter": "Chapter 2 - Commission for Personal Data Protection",
+      "title": "Composition of CPDP",
+      "content": "The Commission shall consist of a chairperson and four members who are Bulgarian citizens, possess a university degree, have professional experience of no less than 10 years, and have not been convicted for an intentional crime. Members of the Commission shall be elected by the National Assembly for a term of five years. The chairperson of the Commission shall be appointed by the President of the Republic of Bulgaria upon proposal by the National Assembly."
+    },
+    {
+      "provision_ref": "12",
+      "section": "12",
+      "chapter": "Chapter 3 - Processing of Personal Data",
+      "title": "Lawful basis for processing",
+      "content": "The processing of personal data shall be lawful only if and to the extent that at least one of the conditions set out in Article 6(1) of Regulation (EU) 2016/679 is met. Where the processing is based on consent, the controller shall be able to demonstrate that the data subject has consented to the processing of his or her personal data. The conditions for consent shall be those specified in Article 7 of the Regulation."
+    },
+    {
+      "provision_ref": "17",
+      "section": "17",
+      "chapter": "Chapter 3 - Processing of Personal Data",
+      "title": "Special categories of data",
+      "content": "The processing of special categories of personal data referred to in Article 9(1) of Regulation (EU) 2016/679 shall be prohibited except in the cases provided for in Article 9(2) of the Regulation and the specific conditions set out in this Act. When processing is carried out for the purposes of employment law, social security, or social protection, additional safeguards must be implemented to protect the rights and freedoms of data subjects."
+    },
+    {
+      "provision_ref": "25",
+      "section": "25",
+      "chapter": "Chapter 4 - Rights of Data Subjects",
+      "title": "Right of access",
+      "content": "Every data subject shall have the right to obtain from the controller confirmation as to whether personal data concerning him or her are being processed, and where that is the case, access to the personal data and the information specified in Article 15 of Regulation (EU) 2016/679. The controller shall provide a copy of the personal data undergoing processing. For any further copies requested by the data subject, the controller may charge a reasonable fee based on administrative costs."
+    },
+    {
+      "provision_ref": "25a",
+      "section": "25a",
+      "chapter": "Chapter 4 - Rights of Data Subjects",
+      "title": "Right to rectification and erasure",
+      "content": "The data subject shall have the right to obtain from the controller without undue delay the rectification of inaccurate personal data concerning him or her in accordance with Article 16 of Regulation (EU) 2016/679. The data subject shall have the right to erasure ('right to be forgotten') in accordance with Article 17 of the Regulation. The controller shall implement appropriate technical and organisational measures to ensure effective exercise of these rights."
+    },
+    {
+      "provision_ref": "25b",
+      "section": "25b",
+      "chapter": "Chapter 4 - Rights of Data Subjects",
+      "title": "Right to data portability",
+      "content": "The data subject shall have the right to receive the personal data concerning him or her, which he or she has provided to a controller, in a structured, commonly used and machine-readable format, and shall have the right to transmit those data to another controller without hindrance from the controller to which the personal data have been provided, in accordance with Article 20 of Regulation (EU) 2016/679."
+    },
+    {
+      "provision_ref": "32",
+      "section": "32",
+      "chapter": "Chapter 5 - Obligations of the Controller and Processor",
+      "title": "Data protection impact assessment",
+      "content": "Where a type of processing, in particular using new technologies, and taking into account the nature, scope, context and purposes of the processing, is likely to result in a high risk to the rights and freedoms of natural persons, the controller shall, prior to the processing, carry out an assessment of the impact of the envisaged processing operations on the protection of personal data, in accordance with Article 35 of Regulation (EU) 2016/679. The controller shall seek the advice of the data protection officer, where designated."
+    },
+    {
+      "provision_ref": "36",
+      "section": "36",
+      "chapter": "Chapter 5 - Obligations of the Controller and Processor",
+      "title": "Data protection officer",
+      "content": "The controller and the processor shall designate a data protection officer in the cases specified in Article 37 of Regulation (EU) 2016/679. The data protection officer shall be designated on the basis of professional qualities and expert knowledge of data protection law and practices. The data protection officer may be a staff member of the controller or processor, or fulfil the tasks on the basis of a service contract."
+    },
+    {
+      "provision_ref": "38",
+      "section": "38",
+      "chapter": "Chapter 5 - Obligations of the Controller and Processor",
+      "title": "Personal data breach notification",
+      "content": "In the case of a personal data breach, the controller shall without undue delay and, where feasible, not later than 72 hours after having become aware of it, notify the personal data breach to the Commission for Personal Data Protection, in accordance with Article 33 of Regulation (EU) 2016/679. Where the personal data breach is likely to result in a high risk to the rights and freedoms of natural persons, the controller shall communicate the personal data breach to the data subject without undue delay, in accordance with Article 34 of the Regulation."
+    },
+    {
+      "provision_ref": "42",
+      "section": "42",
+      "chapter": "Chapter 6 - International Data Transfers",
+      "title": "Transfer conditions",
+      "content": "Any transfer of personal data to a third country or an international organisation shall take place only in accordance with the conditions laid down in Chapter V of Regulation (EU) 2016/679. The Commission for Personal Data Protection may approve standard data protection clauses for transfers in accordance with Article 46(2)(d) of the Regulation. Transfers on the basis of adequacy decisions pursuant to Article 45 of the Regulation shall be permitted without any specific authorisation."
+    },
+    {
+      "provision_ref": "50",
+      "section": "50",
+      "chapter": "Chapter 7 - Data Processing for Law Enforcement Purposes",
+      "title": "Processing for law enforcement",
+      "content": "This chapter implements Directive (EU) 2016/680 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data by competent authorities for the purposes of the prevention, investigation, detection or prosecution of criminal offences or the execution of criminal penalties, including the safeguarding against and the prevention of threats to public security."
+    },
+    {
+      "provision_ref": "56",
+      "section": "56",
+      "chapter": "Chapter 7 - Data Processing for Law Enforcement Purposes",
+      "title": "Time limits for storage",
+      "content": "Personal data processed for law enforcement purposes shall be kept in a form which permits identification of data subjects for no longer than is necessary for the purposes for which they are processed. Appropriate time limits shall be established for the periodic review of the need for continued storage. Procedural measures shall ensure that those time limits are observed."
+    },
+    {
+      "provision_ref": "62",
+      "section": "62",
+      "chapter": "Chapter 8 - Remedies, Liability and Sanctions",
+      "title": "Right to lodge a complaint",
+      "content": "Without prejudice to any other administrative or judicial remedy, every data subject shall have the right to lodge a complaint with the Commission for Personal Data Protection if the data subject considers that the processing of personal data relating to him or her infringes the General Data Protection Regulation or the provisions of this Act. The Commission shall inform the complainant on the progress and the outcome of the complaint within three months."
+    },
+    {
+      "provision_ref": "64",
+      "section": "64",
+      "chapter": "Chapter 8 - Remedies, Liability and Sanctions",
+      "title": "Right to effective judicial remedy",
+      "content": "Without prejudice to any available administrative or non-judicial remedy, each data subject shall have the right to an effective judicial remedy where he or she considers that his or her rights under this Act or the General Data Protection Regulation have been infringed as a result of the processing of his or her personal data. Proceedings against a controller or a processor shall be brought before the courts of the Republic of Bulgaria."
+    },
+    {
+      "provision_ref": "71",
+      "section": "71",
+      "chapter": "Chapter 8 - Remedies, Liability and Sanctions",
+      "title": "Administrative fines and penalties",
+      "content": "Infringements of the provisions of this Act shall be subject to administrative fines and penalties in accordance with Article 83 of Regulation (EU) 2016/679. The Commission for Personal Data Protection shall impose the administrative fines provided for in Article 83 of the Regulation. When deciding on the amount of the administrative fine, the Commission shall give due regard to the criteria set out in Article 83(2) of the Regulation, including the nature, gravity and duration of the infringement."
+    },
+    {
+      "provision_ref": "72",
+      "section": "72",
+      "chapter": "Chapter 8 - Remedies, Liability and Sanctions",
+      "title": "Penalties for specific violations",
+      "content": "A controller or processor who fails to comply with a decision of the Commission for Personal Data Protection or an order issued thereunder shall be subject to a fine of BGN 10,000 to BGN 100,000. In the case of a repeated infringement, the fine shall be from BGN 20,000 to BGN 200,000. A person who obstructs the exercise of supervisory powers by the Commission shall be subject to a fine of BGN 5,000 to BGN 50,000."
+    }
+  ],
+  "definitions": [
+    {
+      "term": "Personal data",
+      "definition": "Any information relating to an identified or identifiable natural person ('data subject'), as defined in Article 4(1) of Regulation (EU) 2016/679.",
+      "source_provision": "2"
+    },
+    {
+      "term": "Processing",
+      "definition": "Any operation or set of operations which is performed on personal data, as defined in Article 4(2) of Regulation (EU) 2016/679.",
+      "source_provision": "2"
+    },
+    {
+      "term": "Commission for Personal Data Protection (CPDP)",
+      "definition": "The independent state authority that supervises the observance of the legislation on the protection of personal data in Bulgaria, serving as the supervisory authority within the meaning of Article 51 of the GDPR.",
+      "source_provision": "4"
+    }
+  ]
+}

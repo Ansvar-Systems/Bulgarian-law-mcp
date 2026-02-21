@@ -1,0 +1,129 @@
+{
+  "id": "zes-electronic-communications",
+  "type": "statute",
+  "title": "Закон за електронните съобщения (ЗЕС)",
+  "title_en": "Electronic Communications Act",
+  "short_name": "ZES",
+  "status": "in_force",
+  "issued_date": "2007-05-15",
+  "in_force_date": "2007-05-18",
+  "url": "https://lex.bg/laws/ldoc/2135553187",
+  "description": "Governs electronic communications in Bulgaria, implementing EU electronic communications framework directives including Directive 2002/21/EC (Framework Directive) and subsequent amendments. Covers licensing, spectrum management, universal service, network security, data retention, and consumer protection in electronic communications.",
+  "provisions": [
+    {
+      "provision_ref": "1",
+      "section": "1",
+      "chapter": "Chapter 1 - General Provisions",
+      "title": "Subject and scope",
+      "content": "This Act regulates the conditions and procedure for carrying out electronic communications activities, the rights and obligations of undertakings providing electronic communications networks and services, the management of the radio frequency spectrum and the numbering resource, the rights and obligations of users of electronic communications services, and the competences of the state authorities in the field of electronic communications. This Act implements the requirements of Directive 2002/21/EC of the European Parliament and of the Council establishing a common regulatory framework for electronic communications networks and services."
+    },
+    {
+      "provision_ref": "2",
+      "section": "2",
+      "chapter": "Chapter 1 - General Provisions",
+      "title": "Definitions",
+      "content": "For the purposes of this Act: 'electronic communications' means any transmission, emission or reception of signals, signs, text, images, sounds or intelligence of any nature by wire, radio, optical or other electromagnetic systems; 'electronic communications network' means transmission systems and, where applicable, switching or routing equipment and other resources which permit the conveyance of signals; 'electronic communications service' means a service normally provided for remuneration which consists wholly or mainly in the conveyance of signals on electronic communications networks."
+    },
+    {
+      "provision_ref": "3",
+      "section": "3",
+      "chapter": "Chapter 1 - General Provisions",
+      "title": "Objectives of regulation",
+      "content": "The regulation of electronic communications activities shall aim to: promote competition in the provision of electronic communications networks and services; contribute to the development of the internal market; promote the interests of the citizens of the Republic of Bulgaria by ensuring connectivity, wide availability and use of electronic communications networks and services; ensure a high level of security of electronic communications networks and services."
+    },
+    {
+      "provision_ref": "30",
+      "section": "30",
+      "chapter": "Chapter 3 - Communications Regulation Commission",
+      "title": "CRC establishment",
+      "content": "The Communications Regulation Commission (CRC) is an independent specialised state body that regulates and controls electronic communications activities in the Republic of Bulgaria. The CRC shall carry out its activities in accordance with the principles of independence, objectivity, transparency, non-discrimination, proportionality, and predictability."
+    },
+    {
+      "provision_ref": "73",
+      "section": "73",
+      "chapter": "Chapter 7 - Radio Frequency Spectrum Management",
+      "title": "Spectrum allocation",
+      "content": "The radio frequency spectrum is a limited natural resource managed by the State. The management of the radio frequency spectrum shall aim to ensure its efficient, effective and coordinated use. The allocation and assignment of radio frequencies shall be carried out in accordance with the National Radio Frequency Allocation Plan adopted by the Council of Ministers and the requirements of Directive 2002/20/EC."
+    },
+    {
+      "provision_ref": "116",
+      "section": "116",
+      "chapter": "Chapter 9 - Network Security and Integrity",
+      "title": "Security measures",
+      "content": "Undertakings providing public electronic communications networks or publicly available electronic communications services shall take appropriate technical and organisational measures to appropriately manage the risks posed to the security of networks and services. These measures shall ensure a level of security appropriate to the risk, taking into account the state of the art. Measures shall include measures to prevent and minimise the impact of security incidents on users and on interconnected networks."
+    },
+    {
+      "provision_ref": "117",
+      "section": "117",
+      "chapter": "Chapter 9 - Network Security and Integrity",
+      "title": "Security breach notification",
+      "content": "Undertakings providing public electronic communications networks or publicly available electronic communications services shall notify the Communications Regulation Commission of a security breach that has had a significant impact on the operation of networks or services. Where appropriate, the CRC shall inform the competent authorities of other Member States and the European Union Agency for Cybersecurity (ENISA). The CRC may inform the public or require the undertaking to do so, where it determines that disclosure is in the public interest."
+    },
+    {
+      "provision_ref": "171",
+      "section": "171",
+      "chapter": "Chapter 12 - Confidentiality of Communications",
+      "title": "Confidentiality obligation",
+      "content": "The confidentiality of electronic communications shall be guaranteed. Listening, tapping, storage or other kinds of interception or surveillance of communications and the related traffic data by persons other than users, without the consent of the users concerned, shall be prohibited, except when legally authorised in accordance with the Criminal Procedure Code. This provision shall implement the requirements of Article 5 of Directive 2002/58/EC."
+    },
+    {
+      "provision_ref": "172",
+      "section": "172",
+      "chapter": "Chapter 12 - Confidentiality of Communications",
+      "title": "Traffic data retention",
+      "content": "Undertakings providing public electronic communications networks or services shall retain traffic and location data generated or processed in providing their services for a period of 6 months for the purpose of investigation, detection and prosecution of serious criminal offences. The data to be retained shall include data necessary to identify the source and destination of a communication, the date, time and duration of a communication, and the type of communication."
+    },
+    {
+      "provision_ref": "173",
+      "section": "173",
+      "chapter": "Chapter 12 - Confidentiality of Communications",
+      "title": "Access to retained data",
+      "content": "Access to retained data shall be provided only on the basis of a court order issued upon request by the relevant authorities. Access may be granted for the purposes of: prevention, investigation, detection and prosecution of serious criminal offences; protection of national security. Any access to retained data not compliant with this Act shall be prohibited and sanctioned."
+    },
+    {
+      "provision_ref": "200",
+      "section": "200",
+      "chapter": "Chapter 14 - Consumer Protection",
+      "title": "Consumer rights",
+      "content": "Users of publicly available electronic communications services shall have the right to: conclude contracts with undertakings on transparent and non-discriminatory terms; receive information about service quality, prices and conditions; terminate contracts without penalty upon modification of contractual conditions; access universal service; lodge complaints with the CRC regarding service quality."
+    },
+    {
+      "provision_ref": "224",
+      "section": "224",
+      "chapter": "Chapter 15 - Universal Service",
+      "title": "Universal service obligations",
+      "content": "Universal service means the minimum set of services of specified quality which is available to all users regardless of their geographical location and, in the light of specific national conditions, at an affordable price. Universal service includes: access to publicly available telephone services at a fixed location; access to a publicly available telephone directory; availability of public pay telephones; specific measures for users with disabilities."
+    },
+    {
+      "provision_ref": "260",
+      "section": "260",
+      "chapter": "Chapter 17 - Administrative Sanctions",
+      "title": "Penalties for violations",
+      "content": "An undertaking providing electronic communications networks or services that violates the obligations under Article 116 regarding security measures shall be subject to a fine of BGN 10,000 to BGN 100,000. An undertaking that fails to notify a security breach in accordance with Article 117 shall be subject to a fine of BGN 5,000 to BGN 50,000. For repeated violations within one year, the fine shall be doubled."
+    },
+    {
+      "provision_ref": "261",
+      "section": "261",
+      "chapter": "Chapter 17 - Administrative Sanctions",
+      "title": "Penalties for confidentiality breaches",
+      "content": "A person who, in violation of Article 171, unlawfully intercepts, records, or monitors electronic communications shall be subject to a fine of BGN 20,000 to BGN 200,000, unless the act constitutes a criminal offence. An undertaking that fails to comply with data retention obligations under Article 172 shall be subject to a fine of BGN 10,000 to BGN 100,000."
+    }
+  ],
+  "definitions": [
+    {
+      "term": "Electronic communications",
+      "definition": "Any transmission, emission or reception of signals, signs, text, images, sounds or intelligence of any nature by wire, radio, optical or other electromagnetic systems.",
+      "source_provision": "2"
+    },
+    {
+      "term": "Electronic communications network",
+      "definition": "Transmission systems and, where applicable, switching or routing equipment and other resources which permit the conveyance of signals.",
+      "source_provision": "2"
+    },
+    {
+      "term": "Electronic communications service",
+      "definition": "A service normally provided for remuneration which consists wholly or mainly in the conveyance of signals on electronic communications networks.",
+      "source_provision": "2"
+    }
+  ]
+}

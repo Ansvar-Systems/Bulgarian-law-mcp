@@ -17,12 +17,15 @@
       "transport": {
         "type": "stdio"
       }
-    }
-  ],
-  "remotes": [
+    },
     {
-      "transportType": "streamable-http",
-      "url": "https://bulgarian-law-mcp.vercel.app/mcp"
+      "registryType": "npm",
+      "identifier": "@ansvar/bulgarian-law-mcp",
+      "version": "1.2.0",
+      "transport": {
+        "type": "streamable-http",
+        "url": "https://bulgarian-law-mcp.vercel.app/mcp"
+      }
     }
   ]
 }

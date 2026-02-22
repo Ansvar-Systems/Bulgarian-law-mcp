@@ -6,51 +6,27 @@
   "provisions": [
     {
       "id": "bg-hash-001",
-      "description": "ZZLD Art. 1 -- scope and purpose of the Personal Data Protection Act implementing GDPR",
-      "upstream_url": "https://lex.bg/laws/ldoc/2135426048",
-      "selector_hint": "Art. 1 - Scope",
+      "description": "Cybersecurity Act (act-78098) Art. 1",
+      "upstream_url": "https://www.parliament.bg/bg/laws/ID/78098",
+      "selector_hint": "Чл. 1",
       "expected_sha256": "COMPUTE_ON_FIRST_INGEST",
-      "expected_snippet": "personal data"
+      "expected_snippet": "Този закон урежда"
     },
     {
       "id": "bg-hash-002",
-      "description": "Cybersecurity Act Art. 1 -- scope of Bulgaria's NIS Directive implementation",
-      "upstream_url": "https://lex.bg/laws/ldoc/2137188253",
-      "selector_hint": "Art. 1 - Subject and scope",
+      "description": "Electronic Identification Act (act-15565) Art. 1",
+      "upstream_url": "https://www.parliament.bg/bg/laws/ID/15565",
+      "selector_hint": "Чл. 1",
       "expected_sha256": "COMPUTE_ON_FIRST_INGEST",
-      "expected_snippet": "cybersecurity"
+      "expected_snippet": "електронната идентификация"
     },
     {
       "id": "bg-hash-003",
-      "description": "Penal Code Art. 319a -- unauthorised access to a computer system",
-      "upstream_url": "https://lex.bg/laws/ldoc/1589654529",
-      "selector_hint": "Art. 319a - Unauthorised access",
+      "description": "Crypto-Asset Markets Act (act-165936) Art. 1",
+      "upstream_url": "https://www.parliament.bg/bg/laws/ID/165936",
+      "selector_hint": "Чл. 1",
       "expected_sha256": "COMPUTE_ON_FIRST_INGEST",
-      "expected_snippet": "unauthorised access"
-    },
-    {
-      "id": "bg-hash-004",
-      "description": "Electronic Commerce Act Art. 1 -- scope of ZET implementing e-Commerce Directive",
-      "upstream_url": "https://lex.bg/laws/ldoc/2135530715",
-      "selector_hint": "Art. 1 - Subject and scope",
-      "expected_sha256": "COMPUTE_ON_FIRST_INGEST",
-      "expected_snippet": "information society services"
-    },
-    {
-      "id": "bg-hash-005",
-      "description": "Electronic Governance Act Art. 2 -- principles of electronic governance including once-only principle",
-      "upstream_url": "https://lex.bg/laws/ldoc/2135555445",
-      "selector_hint": "Art. 2 - Principles",
-      "expected_sha256": "COMPUTE_ON_FIRST_INGEST",
-      "expected_snippet": "once-only"
-    },
-    {
-      "id": "bg-hash-006",
-      "description": "Trade Secrets Protection Act Art. 2 -- definition of trade secret implementing Directive (EU) 2016/943",
-      "upstream_url": "https://lex.bg/laws/ldoc/2137192640",
-      "selector_hint": "Art. 2 - Trade secret defined",
-      "expected_sha256": "COMPUTE_ON_FIRST_INGEST",
-      "expected_snippet": "trade secret"
+      "expected_snippet": "криптоактиви"
     }
   ]
 }

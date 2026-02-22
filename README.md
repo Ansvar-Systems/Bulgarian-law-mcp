@@ -38,6 +38,16 @@ bulgarian-law-mcp.vercel.app/mcp
 
 > Full provenance: [`sources.yml`](./sources.yml)
 
+## Corpus Coverage
+
+- Official source used for real ingestion: `https://www.parliament.bg/api/v1`
+- Discovered laws: `2002`
+- Ingested successfully: `1997` (`99.75%`)
+- Missing from seed corpus: `5` laws due to official API incomplete payloads
+
+See exact missing act IDs and reasons in:
+- [`data/seed/INGESTION_NOTES.md`](./data/seed/INGESTION_NOTES.md)
+
 ## Tools
 
 | Tool | Description |

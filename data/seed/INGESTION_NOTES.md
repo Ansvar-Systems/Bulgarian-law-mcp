@@ -5,6 +5,7 @@ Ingestion date (UTC): 2026-02-21
 Discovered laws: 2002
 Ingested successfully: 1997
 Skipped: 5
+Coverage: 99.75% of discovered corpus (100% of fetchable corpus)
 
 Skipped laws (official source returned incomplete payload):
 

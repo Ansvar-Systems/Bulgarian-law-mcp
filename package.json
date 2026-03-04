@@ -1,6 +1,6 @@
 {
   "name": "@ansvar/bulgarian-law-mcp",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "mcpName": "eu.ansvar/bulgarian-law-mcp",
   "description": "Bulgarian law database covering data protection, cybersecurity, e-commerce, and criminal law provisions via Model Context Protocol",
   "author": "Ansvar Systems <hello@ansvar.eu>",
@@ -46,11 +46,13 @@
     "validate": "npm run lint && npm test && npm run test:contract",
     "lint": "tsc --noEmit",
     "prepublishOnly": "npm run build",
-    "postinstall": "test -d dist || npm run build || true"
+    "postinstall": "test -d dist || npm run build || true",
+    "check-updates": "node --import tsx scripts/check-updates.ts"
   },
   "dependencies": {
     "@ansvar/mcp-sqlite": "^1.0.3",
-    "@modelcontextprotocol/sdk": "^1.25.3"
+    "@modelcontextprotocol/sdk": "^1.25.3",
+    "fast-xml-parser": "^5.4.1"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.13",

@@ -1,19 +1,26 @@
 /**
  * Tests for Bulgarian Law MCP tools.
  * Runs against the built database produced from official parliament.bg ingestion.
+ *
+ * Skipped automatically in CI when the database file is absent (e.g. npm-only
+ * installs or lightweight contract-test pipelines).
  */
 
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import Database from 'better-sqlite3';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { existsSync } from 'fs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DB_PATH = join(__dirname, '..', '..', 'data', 'database.db');
 
+const DB_EXISTS = existsSync(DB_PATH);
+
 let db: InstanceType<typeof Database>;
 
 beforeAll(() => {
+  if (!DB_EXISTS) return;
   db = new Database(DB_PATH, { readonly: true });
   db.pragma('foreign_keys = ON');
 });
@@ -22,7 +29,7 @@ afterAll(() => {
   if (db) db.close();
 });
 
-describe('database integrity', () => {
+describe.skipIf(!DB_EXISTS)('database integrity', () => {
   it('should have large real corpus of legal documents', () => {
     const row = db.prepare('SELECT COUNT(*) as cnt FROM legal_documents').get() as { cnt: number };
     expect(row.cnt).toBeGreaterThanOrEqual(1500);
@@ -49,7 +56,7 @@ describe('database integrity', () => {
   });
 });
 
-describe('document presence checks', () => {
+describe.skipIf(!DB_EXISTS)('document presence checks', () => {
   it('should include known key acts by official IDs', () => {
     const ids = ['act-78098', 'act-15565', 'act-165936'];
 
@@ -88,7 +95,7 @@ describe('document presence checks', () => {
   });
 });
 
-describe('FTS5 search', () => {
+describe.skipIf(!DB_EXISTS)('FTS5 search', () => {
   it('should find provisions matching "киберсигурност"', () => {
     const rows = db.prepare(
       "SELECT COUNT(*) as cnt FROM provisions_fts WHERE provisions_fts MATCH 'киберсигурност'"
@@ -114,7 +121,7 @@ describe('FTS5 search', () => {
   });
 });
 
-describe('negative cases', () => {
+describe.skipIf(!DB_EXISTS)('negative cases', () => {
   it('should return no results for non-existent document', () => {
     const row = db.prepare(
       "SELECT id FROM legal_documents WHERE id = 'nonexistent-law-2099'"

@@ -52,7 +52,7 @@
   "dependencies": {
     "@ansvar/mcp-sqlite": "^1.0.3",
     "@modelcontextprotocol/sdk": "^1.25.3",
-    "fast-xml-parser": "^5.4.1"
+    "fast-xml-parser": "^5.5.10"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.13",
@@ -72,6 +72,8 @@
   "overrides": {
     "path-to-regexp": "^8.0.0",
     "undici": "^7.0.0",
-    "ajv": "^8.18.0"
+    "ajv": "^8.18.0",
+    "smol-toml": "^1.6.1",
+    "minimatch": "^10.2.3"
   }
 }

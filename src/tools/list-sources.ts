@@ -47,12 +47,12 @@ export async function listSources(
           name: 'lex.bg',
           authority: 'Народно събрание (National Assembly of Bulgaria)',
           url: 'https://www.lex.bg',
-          license: 'Creative Commons Attribution 4.0 International (CC BY 4.0)',
+          license: 'government_terms',
           coverage:
-            'All Commonwealth (federal) Acts and legislative instruments, ' +
-            'including privacy, cybersecurity, critical infrastructure, ' +
-            'corporations, consumer, telecommunications, and criminal law',
-          languages: ['en'],
+            'Bulgarian National Assembly legislation (Народно събрание), ' +
+            'including criminal, civil, administrative, and commercial law, ' +
+            'as well as EU transposition acts and constitutional provisions',
+          languages: ['bg', 'en'],
         },
       ],
       database: {

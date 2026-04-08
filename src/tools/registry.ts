@@ -85,12 +85,12 @@ export const TOOLS: Tool[] = [
   {
     name: 'get_provision',
     description:
-      'Retrieve the full text of a specific provision (section) from an Bulgarian statute. ' +
+      'Retrieve the full text of a specific provision (section) from a Bulgarian statute. ' +
       'Specify a document_id (Act title, abbreviation, or internal ID) and optionally a section or provision_ref. ' +
       'Omit section/provision_ref to get ALL provisions in the statute (use sparingly — can be large). ' +
       'Subsection references like "13(1)" or "s29(2)(a)" resolve to the parent section. ' +
       'Returns provision text, chapter, section number, and metadata. ' +
-      'Supports Act title references (e.g., "Privacy Act 1988"), abbreviations, and full titles. ' +
+      'Supports Act title references (e.g., "Наказателен кодекс"), abbreviations, and full titles. ' +
       'Use this when you know WHICH provision you want. For discovery, use search_legislation instead.',
     inputSchema: {
       type: 'object',
@@ -98,8 +98,8 @@ export const TOOLS: Tool[] = [
         document_id: {
           type: 'string',
           description:
-            'Statute identifier: Act title (e.g., "Privacy Act 1988"), abbreviation, ' +
-            'or internal document ID (e.g., "privacy-act-1988").',
+            'Statute identifier: Act title (e.g., "Наказателен кодекс"), abbreviation, ' +
+            'or internal document ID (e.g., "nakazatelen-kodeks").',
         },
         section: {
           type: 'string',
@@ -116,16 +116,16 @@ export const TOOLS: Tool[] = [
   {
     name: 'validate_citation',
     description:
-      'Validate an Bulgarian legal citation against the database — zero-hallucination check. ' +
+      'Validate a Bulgarian legal citation against the database — zero-hallucination check. ' +
       'Parses the citation, checks that the document and provision exist, and returns warnings about status ' +
       '(repealed, amended). Use this to verify any citation BEFORE including it in a legal analysis. ' +
-      'Supports formats: "Section 13 Privacy Act 1988", "Privacy Act 1988 s 13", "s 13".',
+      'Supports formats: "Чл. 5 Наказателен кодекс", "Наказателен кодекс чл. 5", "чл. 5".',
     inputSchema: {
       type: 'object',
       properties: {
         citation: {
           type: 'string',
-          description: 'Citation string to validate. Examples: "Section 13 Privacy Act 1988", "Privacy Act 1988 s 13".',
+          description: 'Citation string to validate. Examples: "Чл. 5 Наказателен кодекс", "Наказателен кодекс чл. 5".',
         },
       },
       required: ['citation'],
@@ -161,9 +161,9 @@ export const TOOLS: Tool[] = [
   {
     name: 'format_citation',
     description:
-      'Format an Bulgarian legal citation per standard conventions. ' +
-      'Three formats: "full" (formal, e.g., "Section 13, Privacy Act 1988"), ' +
-      '"short" (abbreviated, e.g., "Privacy Act 1988 s 13"), "pinpoint" (section reference only, e.g., "s 13").',
+      'Format a Bulgarian legal citation per standard conventions. ' +
+      'Three formats: "full" (formal, e.g., "Член 5, Наказателен кодекс"), ' +
+      '"short" (abbreviated, e.g., "Наказателен кодекс чл. 5"), "pinpoint" (section reference only, e.g., "чл. 5").',
     inputSchema: {
       type: 'object',
       properties: {
@@ -181,7 +181,7 @@ export const TOOLS: Tool[] = [
   {
     name: 'check_currency',
     description:
-      'Check whether an Bulgarian statute or provision is currently in force, amended, repealed, or not yet in force. ' +
+      'Check whether a Bulgarian statute or provision is currently in force, amended, repealed, or not yet in force. ' +
       'Returns the document status, issued date, in-force date, and warnings. ' +
       'Essential before citing any provision — always verify currency.',
     inputSchema: {
@@ -202,7 +202,7 @@ export const TOOLS: Tool[] = [
   {
     name: 'get_eu_basis',
     description:
-      'Get the EU legal basis that an Bulgarian statute references or aligns with. ' +
+      'Get the EU legal basis that a Bulgarian statute references or aligns with. ' +
       'As an EU Member State, Bulgaria transposes EU directives and implements EU regulations ' +
       '(e.g., Privacy Act references GDPR concepts, SOCI Act aligns with NIS2 patterns). ' +
       'Returns EU document identifiers, reference types, and alignment status.',
@@ -269,7 +269,7 @@ export const TOOLS: Tool[] = [
   {
     name: 'get_provision_eu_basis',
     description:
-      'Get the EU legal basis for a SPECIFIC provision within an Bulgarian statute. ' +
+      'Get the EU legal basis for a SPECIFIC provision within a Bulgarian statute. ' +
       'More granular than get_eu_basis (which operates at the statute level). ' +
       'Use this for pinpoint EU alignment checks at the provision level.',
     inputSchema: {
@@ -284,7 +284,7 @@ export const TOOLS: Tool[] = [
   {
     name: 'validate_eu_compliance',
     description:
-      'Check EU alignment status for an Bulgarian statute or provision. ' +
+      'Check EU alignment status for a Bulgarian statute or provision. ' +
       'Detects references to EU directives, alignment status, and cross-references. ' +
       'Returns compliance status (compliant, partial, unclear, not_applicable) with warnings. ' +
       'Note: As an EU Member State, Bulgaria is bound by EU law. This checks transposition and compliance status.',

@@ -9,9 +9,12 @@ sources:
     retrieval_method: "API"
     update_frequency: "unknown"
     license_or_terms:
-      type: "government_terms"
+      type: "BG-Statutory-PD"
+      ansvar_code: "BG-Statutory-PD"
+      statute_ref: "ZAPSP (Закон за авторското право и сродните му права) Art. 4(1)"
       url: "https://www.parliament.bg/bg/laws"
-      summary: "Promulgated legislative acts are publicly published by the National Assembly and exposed through parliament.bg API endpoints."
+      url_pattern: '^https?://(?:www\.)?parliament\.bg/.+'
+      summary: "Bulgarian statutory-PD carve-out per ZAPSP Art. 4(1) — broad, covers all four categories (statutes, court decisions, administrative acts, preparatory documents). This MCP ingests promulgated legislative acts via parliament.bg API. Note: the arch-docs fleet manifest currently declares publisher lex.bg; the ZAPSP Art. 4 statutory basis is the same regardless of mirror. See infrastructure/attribution-licenses.json BG-Statutory-PD."
     coverage:
       scope: "Archive-indexed promulgated laws available via /api/v1/archive-list, /api/v1/archive-period, and full act payloads via /api/v1/act/{id}."
       limitations: "Coverage follows what is exposed by the parliament.bg archive API (2006+ buckets currently available)."

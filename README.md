@@ -356,8 +356,27 @@ Apache License 2.0. See [LICENSE](./LICENSE) for details.
 
 ### Data Licenses
 
-- **Statutes & Legislation:** Bulgarian National Assembly / Lex.bg (public domain)
-- **EU Metadata:** EUR-Lex (EU public domain)
+Ansvar attribution code: **`BG-Statutory-PD`**. Basis: ZAPSP (`Закон за
+авторското право и сродните му права`) Art. 4(1) — broad statutory-PD
+carve-out covering all four categories of official legal material.
+
+- **Statutes & Legislation:** Bulgarian National Assembly via
+  `parliament.bg` API. Reused under ZAPSP Art. 4(1).
+- **EU Metadata:** EUR-Lex (EU public-domain notice).
+
+### Coverage scope (broad)
+
+ZAPSP Art. 4(1) is one of the broadest statutory-PD carve-outs in the
+EU audit. It covers all four standard categories:
+
+- Statutes (`закони`, `постановления`, `наредби`)
+- Court decisions (judicial output)
+- Administrative-authority decisions
+- Preparatory documents
+
+See `docs/audits/2026-05-17-eu-copyright-statutory-works-batch-3-BG-HR-SK-SI-SE.md`
+in the Ansvar architecture-documentation repo for the verbatim Art. 4(1)
+text and the coverage analysis.
 
 ---
 
